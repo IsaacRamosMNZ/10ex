@@ -1,0 +1,584 @@
+Exercícios herança e polimorfismo 1°
+
+
+Veiculo.java
+
+abstract class Veiculo {
+    protected String marca;
+
+    public Veiculo(String marca) {
+        this.marca = marca;
+    }
+
+    public abstract void exibirDetalhes();
+}
+
+Carro.java
+
+class Carro extends Veiculo {
+    private int portas;
+
+    public Carro(String marca) {
+        super(marca);
+    }
+
+    // Sobrecarga para definir portas com tipo int
+    public void definirDetalhes(int portas) {
+        this.portas = portas;
+    }
+
+    // Sobrecarga para definir portas com tipo String
+    public void definirDetalhes(String portas) {
+        this.portas = Integer.parseInt(portas);
+    }
+
+    @Override
+    public void exibirDetalhes() {
+        System.out.println("Marca: " + marca + ", Portas: " + portas);
+    }
+}
+
+Moto.java
+
+class Moto extends Veiculo {
+    private int cilindradas;
+
+    public Moto(String marca) {
+        super(marca);
+    }
+
+    public void definirDetalhes(int cilindradas) {
+        this.cilindradas = cilindradas;
+    }
+
+    @Override
+    public void exibirDetalhes() {
+        System.out.println("Marca: " + marca + ", Cilindradas: " + cilindradas);
+    }
+}
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+        Carro carro = new Carro("Fiat");
+        carro.definirDetalhes(4);
+        carro.exibirDetalhes();
+
+        Moto moto = new Moto("Yamaha");
+        moto.definirDetalhes(250);
+        moto.exibirDetalhes();
+    }
+}
+
+
+Exercício 2: Sistema de Funcionários
+Funcionario.java
+
+abstract class Funcionario {
+    protected String nome;
+
+    public Funcionario(String nome) {
+        this.nome = nome;
+    }
+
+    public abstract double calcularSalario();
+}
+
+Gerente.java
+
+class Gerente extends Funcionario {
+    private double bonus;
+
+    public Gerente(String nome) {
+        super(nome);
+    }
+
+    // Sobrecarga para definir bônus com tipo double
+    public void definirBonus(double bonus) {
+        this.bonus = bonus;
+    }
+
+    // Sobrecarga para definir bônus com tipo int
+    public void definirBonus(int bonus) {
+        this.bonus = (double) bonus;
+    }
+
+    @Override
+    public double calcularSalario() {
+        return 5000 + bonus;
+    }
+}
+
+Desenvolvedor.java
+
+class Desenvolvedor extends Funcionario {
+    private int horasTrabalhadas;
+
+    public Desenvolvedor(String nome) {
+        super(nome);
+    }
+
+    public void definirHorasTrabalhadas(int horas) {
+        this.horasTrabalhadas = horas;
+    }
+
+    @Override
+    public double calcularSalario() {
+        return horasTrabalhadas * 50;
+    }
+}
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+        Gerente gerente = new Gerente("Carlos");
+        gerente.definirBonus(1000);
+        System.out.println("Salário do Gerente: " + gerente.calcularSalario());
+
+        Desenvolvedor dev = new Desenvolvedor("Ana");
+        dev.definirHorasTrabalhadas(160);
+        System.out.println("Salário do Desenvolvedor: " + dev.calcularSalario());
+    }
+}
+
+
+Exercício 3: Animais Marinhos
+AnimalMarinho.java
+
+abstract class AnimalMarinho {
+    protected String habitat;
+
+    public AnimalMarinho(String habitat) {
+        this.habitat = habitat;
+    }
+
+    public abstract void fazerSom();
+}
+
+Golfinho.java
+
+class Golfinho extends AnimalMarinho {
+    private int saltos;
+
+    public Golfinho(String habitat) {
+        super(habitat);
+    }
+
+    // Sobrecarga para definir saltos com tipo int
+    public void definirSaltos(int saltos) {
+        this.saltos = saltos;
+    }
+
+    // Sobrecarga para definir saltos com tipo double
+    public void definirSaltos(double saltos) {
+        this.saltos = (int) saltos;
+    }
+
+    @Override
+    public void fazerSom() {
+        System.out.println("Som do Golfinho: 'Eiii!'");
+    }
+}
+
+Tubarao.java
+
+class Tubarao extends AnimalMarinho {
+    private int dentes;
+
+    public Tubarao(String habitat) {
+        super(habitat);
+    }
+
+    public void definirDentes(int dentes) {
+        this.dentes = dentes;
+    }
+
+    @Override
+    public void fazerSom() {
+        System.out.println("Som do Tubarão: 'Grunhido'");
+    }
+}
+
+Main.java
+public class Main {
+    public static void main(String[] args) {
+        Golfinho golfinho = new Golfinho("Oceano");
+        golfinho.definirSaltos(5);
+        golfinho.fazerSom();
+
+        Tubarao tubarao = new Tubarao("Mar aberto");
+        tubarao.definirDentes(50);
+        tubarao.fazerSom();
+    }
+}
+
+
+Exercício 4: Sistema de Contas Bancárias
+Conta.java
+
+abstract class Conta {
+    protected double saldo;
+
+    public Conta(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public abstract void calcularJuros();
+}
+
+ContaPoupanca.java
+
+class ContaPoupanca extends Conta {
+    private double taxaRendimento;
+
+    public ContaPoupanca(double saldo) {
+        super(saldo);
+    }
+
+    // Sobrecarga para definir taxa de rendimento com tipo double
+    public void definirTaxa(double taxa) {
+        this.taxaRendimento = taxa;
+    }
+
+    // Sobrecarga para definir taxa de rendimento com tipo int
+    public void definirTaxa(int taxa) {
+        this.taxaRendimento = (double) taxa;
+    }
+
+    @Override
+    public void calcularJuros() {
+        double juros = saldo * (taxaRendimento / 100);
+        System.out.println("Juros: " + juros);
+    }
+}
+
+ContaCorrente.java
+
+class ContaCorrente extends Conta {
+    private double limite;
+
+    public ContaCorrente(double saldo) {
+        super(saldo);
+    }
+
+    public void definirLimite(double limite) {
+        this.limite = limite;
+    }
+
+    @Override
+    public void calcularJuros() {
+        double juros = saldo * 0.05;
+        System.out.println("Juros Conta Corrente: " + juros);
+    }
+}
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+        ContaPoupanca poupanca = new ContaPoupanca(1000);
+        poupanca.definirTaxa(5);
+        poupanca.calcularJuros();
+
+        ContaCorrente corrente = new ContaCorrente(2000);
+        corrente.definirLimite(500);
+        corrente.calcularJuros();
+    }
+}
+
+
+Exercício 5: Loja de Eletrônicos
+Eletronico.java
+
+abstract class Eletronico {
+    protected String marca;
+
+    public Eletronico(String marca) {
+        this.marca = marca;
+    }
+
+    public abstract void ligar();
+}
+
+Celular.java
+
+class Celular extends Eletronico {
+    private double tela;
+
+    public Celular(String marca) {
+        super(marca);
+    }
+
+    // Sobrecarga para definir tamanho da tela com tipo double
+    public void definirTela(double tela) {
+        this.tela = tela;
+    }
+
+    // Sobrecarga para definir tamanho da tela com tipo int
+    public void definirTela(int tela) {
+        this.tela = (double) tela;
+    }
+
+    @Override
+    public void ligar() {
+        System.out.println("Celular " + marca + " ligado!");
+    }
+}
+
+Notebook.java
+
+
+class Notebook extends Eletronico {
+    private int ram;
+
+    public Notebook(String marca) {
+        super(marca);
+    }
+
+    public void definirRam(int ram) {
+        this.ram = ram;
+    }
+
+    @Override
+    public void ligar() {
+        System.out.println("Notebook " + marca + " ligado!");
+    }
+}
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+        Celular celular = new Celular("Samsung");
+        celular.definirTela(6.5);
+        celular.ligar();
+
+        Notebook notebook = new Notebook("Dell");
+        notebook.definirRam(16);
+        notebook.ligar();
+    }
+}
+
+
+Exercício 6: Tipos de Pagamento
+Pagamento.java
+
+abstract class Pagamento {
+    protected double valor;
+
+    public Pagamento(double valor) {
+        this.valor = valor;
+    }
+
+    public abstract void processarPagamento();
+}
+
+CartaoCredito.java
+java
+
+class CartaoCredito extends Pagamento {
+    private double limite;
+
+    public CartaoCredito(double valor) {
+        super(valor);
+    }
+
+    // Sobrecarga para definir limite com tipo double
+    public void definirLimite(double limite) {
+        this.limite = limite;
+    }
+
+    // Sobrecarga para definir limite com tipo int
+    public void definirLimite(int limite) {
+        this.limite = (double) limite;
+    }
+
+    @Override
+    public void processarPagamento() {
+        System.out.println("Pagamento de " + valor + " realizado com Cartão de Crédito.");
+    }
+}
+
+Boleto.java
+java
+
+class Boleto extends Pagamento {
+    private String codigoBarras;
+
+    public Boleto(double valor) {
+        super(valor);
+    }
+
+    public void definirCodigo(String codigo) {
+        this.codigoBarras = codigo;
+    }
+
+    @Override
+    public void processarPagamento() {
+        System.out.println("Pagamento de " + valor + " realizado com Boleto.");
+    }
+}
+
+Main.java
+java
+
+public class Main {
+    public static void main(String[] args) {
+        CartaoCredito cartao = new CartaoCredito(150.00);
+        cartao.definirLimite(5000);
+        cartao.processarPagamento();
+
+        Boleto boleto = new Boleto(200.00);
+        boleto.definirCodigo("123456789");
+        boleto.processarPagamento();
+    }
+}
+
+
+Exercício 7: Personagens de Jogo
+Personagem.java
+java
+Copiar
+abstract class Personagem {
+    protected int energia;
+
+    public Personagem(int energia) {
+        this.energia = energia;
+    }
+
+    public abstract void atacar();
+}
+
+Mago.java
+java
+Copiar
+class Mago extends Personagem {
+    private double mana;
+
+    public Mago(int energia) {
+        super(energia);
+    }
+
+    // Sobrecarga para definir mana com tipo double
+    public void definirMana(double mana) {
+        this.mana = mana;
+    }
+
+    // Sobrecarga para definir mana com tipo int
+    public void definirMana(int mana) {
+        this.mana = (double) mana;
+    }
+
+    @Override
+    public void atacar() {
+        System.out.println("Mago ataca com " + mana + " de mana!");
+    }
+}
+
+Guerreiro.java
+java
+Copiar
+class Guerreiro extends Personagem {
+    private int forca;
+
+    public Guerreiro(int energia) {
+        super(energia);
+    }
+
+    public void definirForca(int forca) {
+        this.forca = forca;
+    }
+
+    @Override
+    public void atacar() {
+        System.out.println("Guerreiro ataca com " + forca + " de força!");
+    }
+}
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+        Mago mago = new Mago(100);
+        mago.definirMana(50);
+        mago.atacar();
+
+        Guerreiro guerreiro = new Guerreiro(200);
+        guerreiro.definirForca(80);
+        guerreiro.atacar();
+    }
+}
+
+
+Exercício 8: Tipos de Transporte
+Transporte.java
+
+abstract class Transporte {
+    protected int capacidade;
+
+    public Transporte(int capacidade) {
+        this.capacidade = capacidade;
+    }
+
+    public abstract void mover();
+}
+
+Navio.java
+
+class Navio extends Transporte {
+    private double tonelagem;
+
+    public Navio(int capacidade) {
+        super(capacidade);
+    }
+
+    // Sobrecarga para definir tonelagem com tipo double
+    public void definirTonelagem(double tonelagem) {
+        this.tonelagem = tonelagem;
+    }
+
+    // Sobrecarga para definir tonelagem com tipo int
+    public void definirTonelagem(int tonelagem) {
+        this.tonelagem = (double) tonelagem;
+    }
+
+    @Override
+    public void mover() {
+        System.out.println("Navio movendo com capacidade de " + capacidade + " passageiros.");
+    }
+}
+
+Avião.java
+class Aviao extends Transporte {
+    private int altitudeMaxima;
+
+    public Aviao(int capacidade) {
+        super(capacidade);
+    }
+
+    public void definirAltitude(int altitude) {
+        this.altitudeMaxima = altitude;
+    }
+
+    @Override
+    public void mover() {
+        System.out.println("Avião movendo a " + altitudeMaxima + " metros de altitude.");
+    }
+}
+
+Main.java
+java
+Copiar
+public class Main {
+    public static void main(String[] args) {
+        Navio navio = new Navio(100);
+        navio.definirTonelagem(20000);
+        navio.mover();
+
+        Aviao aviao = new Aviao(200);
+        aviao.definirAltitude(10000);
+        aviao.mover();
+    }
+}
